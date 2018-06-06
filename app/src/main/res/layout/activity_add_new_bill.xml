@@ -1,0 +1,353 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".addNewBill">
+
+    <ImageView
+        android:id="@+id/TopTrim"
+        android:layout_width="460dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="550dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:background="@drawable/rectangletop"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.529"
+        app:srcCompat="@drawable/rectangletop" />
+
+    <Button
+        android:id="@+id/Cancel"
+        android:layout_width="0dp"
+        android:layout_height="68dp"
+        android:layout_marginBottom="2dp"
+        android:layout_marginEnd="1dp"
+        android:layout_marginRight="1dp"
+        android:background="@android:color/transparent"
+        android:text="Cancel"
+        app:layout_constraintBottom_toTopOf="@+id/Save"
+        app:layout_constraintEnd_toStartOf="@+id/Save"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <Button
+        android:id="@+id/Save"
+        android:layout_width="173dp"
+        android:layout_height="60dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginTop="8dp"
+        android:background="@android:color/transparent"
+        android:text="Save"
+        app:layout_constraintBottom_toTopOf="@+id/BillName"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/Cancel"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/showBillName"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:gravity="center"
+        android:text="Bill Name:"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        app:layout_constraintBottom_toTopOf="@+id/showBillAmount"
+        app:layout_constraintEnd_toStartOf="@+id/BillName"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/BillName" />
+
+    <EditText
+        android:id="@+id/BillName"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="16dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        app:layout_constraintBottom_toTopOf="@+id/BillAmount"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/showBillName"
+        app:layout_constraintTop_toBottomOf="@+id/Save" />
+
+    <TextView
+        android:id="@+id/showBillAmount"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginEnd="1dp"
+        android:layout_marginRight="1dp"
+        android:gravity="center"
+        android:text="Bill Amount:"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        app:layout_constraintBottom_toTopOf="@+id/showDate"
+        app:layout_constraintEnd_toStartOf="@+id/BillAmount"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/BillAmount" />
+
+    <EditText
+        android:id="@+id/BillAmount"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="1dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="16dp"
+        android:ems="10"
+        android:inputType="number"
+        app:layout_constraintBottom_toTopOf="@+id/EnteredDate"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/showBillAmount"
+        app:layout_constraintTop_toBottomOf="@+id/BillName" />
+
+    <TextView
+        android:id="@+id/showDate"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:gravity="center"
+        android:text="Date:"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        app:layout_constraintBottom_toTopOf="@+id/showLocation"
+        app:layout_constraintEnd_toStartOf="@+id/BillAmount"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/EnteredDate" />
+
+    <EditText
+        android:id="@+id/EnteredDate"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:ems="10"
+        android:inputType="date"
+        app:layout_constraintBottom_toTopOf="@+id/Location"
+        app:layout_constraintEnd_toEndOf="@+id/Location"
+        app:layout_constraintStart_toEndOf="@+id/showBillAmount"
+        app:layout_constraintTop_toBottomOf="@+id/BillAmount" />
+
+    <TextView
+        android:id="@+id/showLocation"
+        android:layout_width="0dp"
+        android:layout_height="54dp"
+        android:gravity="center"
+        android:text="Location:"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/Location"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/Location"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="16dp"
+        android:layout_marginEnd="17dp"
+        android:layout_marginRight="17dp"
+        android:ems="10"
+        android:inputType="textPostalAddress"
+        app:layout_constraintBottom_toTopOf="@+id/Prioritize"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/showLocation"
+        app:layout_constraintTop_toBottomOf="@+id/EnteredDate" />
+
+    <Switch
+        android:id="@+id/Notifications"
+        android:layout_width="133dp"
+        android:layout_height="33dp"
+        android:layout_marginBottom="188dp"
+        android:layout_marginEnd="49dp"
+        android:layout_marginRight="49dp"
+        android:gravity="center"
+        android:scaleX="1.5"
+        android:scaleY="1.5"
+        android:text="Notifications"
+        android:textAppearance="@style/TextAppearance.AppCompat.Small"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/Prioritize"
+        app:layout_constraintTop_toBottomOf="@+id/Save"
+        app:layout_constraintVertical_bias="0.938" />
+
+    <CheckedTextView
+        android:id="@+id/DayOfCheck"
+        android:layout_width="0dp"
+        android:layout_height="29dp"
+        android:layout_marginBottom="12dp"
+        android:layout_marginEnd="43dp"
+        android:layout_marginRight="43dp"
+        android:checkMark="?android:attr/listChoiceIndicatorMultiple"
+        android:checked="false"
+        android:gravity="center"
+        android:text="Day Of"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toTopOf="@+id/DayBeforeCheck"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/LowCheck"
+        app:layout_constraintTop_toBottomOf="@+id/Prioritize" />
+
+    <CheckedTextView
+        android:id="@+id/DayBeforeCheck"
+        android:layout_width="0dp"
+        android:layout_height="34dp"
+        android:layout_marginBottom="13dp"
+        android:layout_marginEnd="43dp"
+        android:layout_marginRight="43dp"
+        android:checkMark="?android:attr/listChoiceIndicatorMultiple"
+        android:checked="false"
+        android:gravity="center"
+        android:text="Day Before"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toTopOf="@+id/ThreeDaysCheck"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/MediumCheck"
+        app:layout_constraintTop_toBottomOf="@+id/DayOfCheck" />
+
+    <CheckedTextView
+        android:id="@+id/ThreeDaysCheck"
+        android:layout_width="0dp"
+        android:layout_height="37dp"
+        android:layout_marginBottom="9dp"
+        android:layout_marginEnd="43dp"
+        android:layout_marginRight="43dp"
+        android:checkMark="?android:attr/listChoiceIndicatorMultiple"
+        android:checked="false"
+        android:gravity="center"
+        android:text="3 Days Before"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toTopOf="@+id/WeekBeforeCheck"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/HighCheck"
+        app:layout_constraintTop_toBottomOf="@+id/DayBeforeCheck" />
+
+    <CheckedTextView
+        android:id="@+id/WeekBeforeCheck"
+        android:layout_width="0dp"
+        android:layout_height="35dp"
+        android:layout_marginBottom="25dp"
+        android:layout_marginEnd="43dp"
+        android:layout_marginRight="43dp"
+        android:checkMark="?android:attr/listChoiceIndicatorMultiple"
+        android:checked="false"
+        android:gravity="center"
+        android:text="Week Before"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/CriticalCheck"
+        app:layout_constraintTop_toBottomOf="@+id/ThreeDaysCheck" />
+
+    <Switch
+        android:id="@+id/Prioritize"
+        android:layout_width="122dp"
+        android:layout_height="38dp"
+        android:layout_marginBottom="9dp"
+        android:layout_marginEnd="59dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="59dp"
+        android:layout_marginStart="16dp"
+        android:gravity="center"
+        android:scaleX="1.5"
+        android:scaleY="1.5"
+        android:text="Prioritize"
+        android:textAppearance="@style/TextAppearance.AppCompat.Small"
+        app:layout_constraintBottom_toTopOf="@+id/DayOfCheck"
+        app:layout_constraintEnd_toStartOf="@+id/Notifications"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Location" />
+
+    <CheckedTextView
+        android:id="@+id/LowCheck"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginEnd="19dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="19dp"
+        android:layout_marginStart="16dp"
+        android:checkMark="?android:attr/listChoiceIndicatorMultiple"
+        android:gravity="center"
+        android:text="Low"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="@+id/DayOfCheck"
+        app:layout_constraintEnd_toStartOf="@+id/DayOfCheck"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/DayOfCheck" />
+
+    <CheckedTextView
+        android:id="@+id/MediumCheck"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginEnd="19dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="19dp"
+        android:layout_marginStart="16dp"
+        android:checkMark="?android:attr/listChoiceIndicatorMultiple"
+        android:checked="false"
+        android:gravity="center"
+        android:text="Medium"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="@+id/DayBeforeCheck"
+        app:layout_constraintEnd_toStartOf="@+id/DayBeforeCheck"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/DayBeforeCheck" />
+
+    <CheckedTextView
+        android:id="@+id/HighCheck"
+        android:layout_width="0dp"
+        android:layout_height="38dp"
+        android:layout_marginEnd="19dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="19dp"
+        android:layout_marginStart="16dp"
+        android:checkMark="?android:attr/listChoiceIndicatorMultiple"
+        android:checked="false"
+        android:gravity="center"
+        android:text="High"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="@+id/ThreeDaysCheck"
+        app:layout_constraintEnd_toStartOf="@+id/ThreeDaysCheck"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/ThreeDaysCheck" />
+
+    <CheckedTextView
+        android:id="@+id/CriticalCheck"
+        android:layout_width="0dp"
+        android:layout_height="36dp"
+        android:layout_marginEnd="19dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="19dp"
+        android:layout_marginStart="16dp"
+        android:checkMark="?android:attr/listChoiceIndicatorMultiple"
+        android:checked="false"
+        android:gravity="center"
+        android:text="Critical"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="@+id/WeekBeforeCheck"
+        app:layout_constraintEnd_toStartOf="@+id/WeekBeforeCheck"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/WeekBeforeCheck" />
+
+    <ImageView
+        android:id="@+id/BottomTrim"
+        android:layout_width="460dp"
+        android:layout_height="70dp"
+        android:layout_marginTop="640dp"
+        android:background="@drawable/bottomrect"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.51"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.596"
+        app:srcCompat="@drawable/bottomrect" />
+
+</android.support.constraint.ConstraintLayout>
