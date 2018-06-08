@@ -34,6 +34,18 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+    public ImageButton scButton;
+    public void changetoSpendingChart(){
+        scButton = findViewById(R.id.scButton);
+        scButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent spendingchart = new Intent(MainActivity.this, SpendingPieChart.class);
+                startActivity(spendingchart);
+            }
+        });
+    }
+
 
 
     @Override
@@ -42,5 +54,6 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         changeToTodayTotal();
         changeToFinancialCalender();
+        changetoSpendingChart();
     }
 }

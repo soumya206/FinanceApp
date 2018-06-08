@@ -21,6 +21,7 @@
         <activity android:name=".financialCalendar"
             android:windowSoftInputMode="adjustResize|adjustPan"/>
         <activity android:name=".addNewBill"></activity>
+        <activity android:name=".SpendingPieChart"></activity>
     </application>
 
 </manifest>
