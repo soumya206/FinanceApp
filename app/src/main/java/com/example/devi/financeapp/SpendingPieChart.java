@@ -5,6 +5,8 @@ import android.os.Bundle;
 import android.provider.ContactsContract;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.github.mikephil.charting.charts.PieChart;
@@ -82,7 +84,8 @@ public class SpendingPieChart extends AppCompatActivity {
         Log.d(TAG,"addDataSet started");
         ArrayList<PieEntry> yEntrys = new ArrayList<>();
         ArrayList<String> xEntrys = new ArrayList<>();
-
+        TextView textView = findViewById(R.id.textView9);
+        textView.setVisibility(View.INVISIBLE);
         try{
             File f = new File(getFilesDir(), "file.ser");
             FileInputStream fi = new FileInputStream(f);
@@ -109,6 +112,7 @@ public class SpendingPieChart extends AppCompatActivity {
         }
         catch(IOException e){
             // Here, initialize a new JSONObject
+            textView.setVisibility(View.VISIBLE);
             jo = new JSONObject();
             ja = new JSONArray();
             try{
