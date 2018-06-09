@@ -1,6 +1,8 @@
 package com.example.devi.financeapp;
 
 public class Data {
-    public String name;
-    public String price;
+    public String total;
+    public String food;
+    public String clothing;
+    public String misc;
 }

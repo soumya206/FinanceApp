@@ -30,14 +30,16 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.util.ArrayList;
-
+//new problem: how to keep track of previous values to add on more spending
 public class SpendingPieChart extends AppCompatActivity {
     private String TAG ="MainActivity";
     JSONObject jo;
     JSONArray ja;
+    int[] temp;
+    float[] fl;
     ArrayList<Data> pieData = new ArrayList<Data>();
     private float[] yData = {25.3f, 66.76f, 44.32f, 46.01f};
-    private String[] xData ={"Car Maintenance", "Groceries", "Taxes","Bills"};
+    private String[] xData ={"food", "clothing", "miscellaneous"};
     PieChart pieChart;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,14 +65,14 @@ public class SpendingPieChart extends AppCompatActivity {
                 int pos1 = e.toString().indexOf("y: ");
                 String cost = e.toString().substring(pos1 + 3);
 
-                for(int i = 0; i < yData.length; i++){
-                    if(yData[i] == Float.parseFloat(cost)){
+                for(int i = 0; i < fl.length; i++){
+                    if(fl[i] == Float.parseFloat(cost)){
                         pos1 = i;
                         break;
                     }
                 }
                 String expense = xData[pos1];
-                Toast.makeText(SpendingPieChart.this, "Expense " + expense + "\n" + "Cost: $" + cost, Toast.LENGTH_SHORT).show();
+                Toast.makeText(SpendingPieChart.this, "Expense: " + expense + "\n" + "Cost: $" + temp[pos1 + 1], Toast.LENGTH_SHORT).show();
             }
 
             @Override
@@ -111,42 +113,64 @@ public class SpendingPieChart extends AppCompatActivity {
             }
         }
         catch(IOException e){
-            // Here, initialize a new JSONObject
-            textView.setVisibility(View.VISIBLE);
-            jo = new JSONObject();
-            ja = new JSONArray();
-            try{
-                jo.put("data", ja);
-            }
-            catch(JSONException j){
-                j.printStackTrace();
-            }
         }
-
 
         for(int i = 0; i< ja.length(); i++){
             Data pdata = new Data();
             try {
-                pdata.name = ja.getJSONObject(i).getString("name");
-                pdata.price = ja.getJSONObject(i).getString("price");
+                pdata.total = ja.getJSONObject(i).getString("total");
+                pdata.food = ja.getJSONObject(i).getString("food");
+                pdata.clothing = ja.getJSONObject(i).getString("clothing");
+                pdata.misc = ja.getJSONObject(i).getString("misc");
             } catch (JSONException e1) {
                 e1.printStackTrace();
             }
             pieData.add(pdata);
         }
 
-        int[] temp = new int[ja.length()];
-
+        temp = new int[4];
+        int sum = 0;
         for(int i = 0; i<ja.length(); i++){
-            String s = pieData.get(i).price;
+            String s = pieData.get(i).total;
             int j = Integer.parseInt(s);
-            temp[i] = j;
+            sum = sum + j;
+        }
+        temp[0] = sum;
+        sum = 0;
+        for(int i = 0; i<ja.length(); i++){
+            String s = pieData.get(i).food;
+            int j = Integer.parseInt(s);
+            sum = sum + j;
+        }
+        temp[1] = sum;
+        sum = 0;
+        for(int i = 0; i<ja.length(); i++){
+            String s = pieData.get(i).clothing;
+            int j = Integer.parseInt(s);
+            sum = sum + j;
+        }
+        temp[2] = sum;
+        sum = 0;
+        for(int i = 0; i<ja.length(); i++){
+            String s = pieData.get(i).misc;
+            int j = Integer.parseInt(s);
+            sum = sum + j;
+        }
+        temp[3] = sum;
+
+        fl = new float[temp.length-1];
+        for(int i = 1; i< temp.length; i++){
+            int q = temp[i]/temp[0];
+            int r = temp[i]%temp[0];
+            double re = r*0.01;
+            double f = q + re;
+            fl[i-1] = (float)f;
         }
 
-        for(int i = 0; i < ja.length(); i++){
-            yEntrys.add(new PieEntry(temp[i], i));
+        for(int i = 0; i < fl.length; i++){
+            yEntrys.add(new PieEntry(fl[i], i));
         }
-        for(int i = 0; i < ja.length(); i++){
+        for(int i = 0; i < xData.length; i++){
             xEntrys.add(xData[i]);
         }
 
