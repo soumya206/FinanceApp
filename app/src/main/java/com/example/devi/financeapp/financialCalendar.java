@@ -89,7 +89,6 @@ public class financialCalendar extends AppCompatActivity {
             }
         });
 
-
     }
 
     protected void populateList(){

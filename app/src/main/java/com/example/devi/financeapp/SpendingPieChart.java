@@ -30,8 +30,11 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.util.ArrayList;
+
+
 //new problem: how to keep track of previous values to add on more spending
 public class SpendingPieChart extends AppCompatActivity {
+
     private String TAG ="MainActivity";
     JSONObject jo;
     JSONArray ja;
@@ -41,6 +44,7 @@ public class SpendingPieChart extends AppCompatActivity {
     private float[] yData = {25.3f, 66.76f, 44.32f, 46.01f};
     private String[] xData ={"food", "clothing", "miscellaneous"};
     PieChart pieChart;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

@@ -18,10 +18,12 @@
         </activity>
         <activity android:name=".MainActivity" />
         <activity android:name=".TodayTotal" />
-        <activity android:name=".financialCalendar"
-            android:windowSoftInputMode="adjustResize|adjustPan"/>
-        <activity android:name=".addNewBill"></activity>
-        <activity android:name=".SpendingPieChart"></activity>
+        <activity
+            android:name=".financialCalendar"
+            android:windowSoftInputMode="adjustResize|adjustPan" />
+        <activity android:name=".addNewBill" />
+        <activity android:name=".SpendingPieChart" />
+        <activity android:name=".Tips"></activity>
     </application>
 
 </manifest>
