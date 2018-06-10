@@ -9,7 +9,6 @@ import android.widget.ImageButton;
 public class MainActivity extends AppCompatActivity {
 
     public ImageButton totalButton;
-
     public void changeToTodayTotal() {
         totalButton = findViewById(R.id.todaysTotalButton);
         totalButton.setOnClickListener(new View.OnClickListener() {
@@ -33,8 +32,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
-
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

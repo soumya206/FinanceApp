@@ -10,10 +10,10 @@
     <ImageView
         android:id="@+id/imageViewTop"
         android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginBottom="129dp"
+        android:layout_height="67dp"
+        android:layout_marginBottom="312dp"
         android:background="@drawable/rectangletop"
-        app:layout_constraintBottom_toTopOf="@+id/NoUpcoming"
+        app:layout_constraintBottom_toTopOf="@+id/floatingActionButton"
         app:layout_constraintEnd_toEndOf="@+id/imageViewBottom"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -22,7 +22,7 @@
     <TextView
         android:id="@+id/textView13"
         android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:layout_height="55dp"
         android:layout_marginBottom="482dp"
         android:layout_marginEnd="13dp"
         android:layout_marginLeft="7dp"
@@ -74,7 +74,9 @@
         android:layout_marginRight="2dp"
         android:layout_marginStart="16dp"
         android:ems="10"
+        android:gravity="center"
         android:inputType="number"
+        android:text="0"
         app:layout_constraintBottom_toTopOf="@+id/imageViewBottom"
         app:layout_constraintEnd_toStartOf="@+id/textView12"
         app:layout_constraintStart_toStartOf="parent"
@@ -107,6 +109,7 @@
         android:layout_height="0dp"
         android:layout_marginBottom="172dp"
         android:text="No Upcoming Bills"
+        android:gravity="center"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         app:layout_constraintBottom_toTopOf="@+id/totalExpense"
         app:layout_constraintEnd_toEndOf="parent"
@@ -133,9 +136,25 @@
         android:layout_marginEnd="16dp"
         android:layout_marginRight="16dp"
         android:gravity="center"
+        android:text="0"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
         app:layout_constraintBottom_toTopOf="@+id/imageViewBottom"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/EditExpense"
         app:layout_constraintTop_toBottomOf="@+id/totalExpense" />
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/floatingActionButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="157dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="16dp"
+        android:clickable="true"
+        app:backgroundTint="@android:color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageViewTop"
+        app:srcCompat="@android:drawable/ic_delete" />
 
 </android.support.constraint.ConstraintLayout>

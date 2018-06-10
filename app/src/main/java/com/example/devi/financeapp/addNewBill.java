@@ -82,7 +82,8 @@ public class addNewBill extends AppCompatActivity {
                 Intent returnIntent = new Intent();
 
                 String name = null;
-                double amount = 0;
+                String amount = null;
+                String date;
                 String address;
 
                 if(billName.getText().toString().isEmpty()){
@@ -97,28 +98,23 @@ public class addNewBill extends AppCompatActivity {
                     Toast.makeText(addNewBill.this, "Please input a Bill Amount", Toast.LENGTH_SHORT).show();
                     return;
                 } else {
-                    amount = Double.parseDouble(billAmount.getText().toString());
+                    amount = billAmount.getText().toString();
                     returnIntent.putExtra("amount", amount);
                 }
 
-                Date inputDate = null;
-                Calendar cal = Calendar.getInstance();
+                //Date inputDate = null;
+                //Calendar cal = Calendar.getInstance();
 
-                SimpleDateFormat df = new SimpleDateFormat("MM-dd-yyyy");
+                //SimpleDateFormat df = new SimpleDateFormat("MM-dd-yyyy");
 
                 if(dateInput.getText().toString().isEmpty()){
                     Toast.makeText(addNewBill.this, "Please input a '-' separated date", Toast.LENGTH_SHORT).show();
                     return;
                 } else {
-                    try {
-                        inputDate = df.parse(dateInput.getText().toString());
-                    } catch (ParseException e) {
-                        e.printStackTrace();
-                    }
+                    date = dateInput.getText().toString();
+
                 }
-                cal.setTime(inputDate);
-                String dateOutput = cal.getTime().toString();
-                returnIntent.putExtra("date", dateOutput);
+                returnIntent.putExtra("date", date);
 
 
                 if(!locationInput.getText().toString().isEmpty()){
@@ -142,9 +138,9 @@ public class addNewBill extends AppCompatActivity {
                     if(high.isChecked()) rank = 3;
                     if(critical.isChecked()) rank = 4;
                 }
-                returnIntent.putExtra("rank", rank);
 
-                setResult(Activity.RESULT_OK);
+                returnIntent.putExtra("rank", rank);
+                setResult(Activity.RESULT_OK, returnIntent);
                 finish();
             }
         });
