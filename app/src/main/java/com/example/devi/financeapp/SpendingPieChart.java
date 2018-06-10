@@ -87,12 +87,10 @@ public class SpendingPieChart extends AppCompatActivity {
     }
 
     private void addDataSet() {
-        Log.d(TAG,"addDataSet started");
+        Log.d(TAG, "addDataSet started");
         ArrayList<PieEntry> yEntrys = new ArrayList<>();
         ArrayList<String> xEntrys = new ArrayList<>();
-        TextView textView = findViewById(R.id.textView9);
-        textView.setVisibility(View.INVISIBLE);
-        try{
+        try {
             File f = new File(getFilesDir(), "file.ser");
             FileInputStream fi = new FileInputStream(f);
             ObjectInputStream o = new ObjectInputStream(fi);
@@ -102,103 +100,103 @@ public class SpendingPieChart extends AppCompatActivity {
             // JSONObject is not. To convert a JSONObject back to a String, simply
             // call the JSONObject’s toString method.
             String j = null;
-            try{
+            try {
                 j = (String) o.readObject();
-            }
-            catch(ClassNotFoundException c){
+            } catch (ClassNotFoundException c) {
                 c.printStackTrace();
             }
             try {
                 jo = new JSONObject(j);
                 ja = jo.getJSONArray("data");
-            }
-            catch(JSONException e){
+            } catch (JSONException e) {
                 e.printStackTrace();
             }
+        } catch (IOException e) {
         }
-        catch(IOException e){
-        }
+        if (ja == null) {
 
-        for(int i = 0; i< ja.length(); i++){
-            Data pdata = new Data();
-            try {
-                pdata.total = ja.getJSONObject(i).getString("total");
-                pdata.food = ja.getJSONObject(i).getString("food");
-                pdata.clothing = ja.getJSONObject(i).getString("clothing");
-                pdata.misc = ja.getJSONObject(i).getString("misc");
-            } catch (JSONException e1) {
-                e1.printStackTrace();
+        } else {
+            for (int i = 0; i < ja.length(); i++) {
+                Data pdata = new Data();
+                try {
+                    pdata.total = ja.getJSONObject(i).getString("total");
+                    pdata.food = ja.getJSONObject(i).getString("food");
+                    pdata.clothing = ja.getJSONObject(i).getString("clothing");
+                    pdata.misc = ja.getJSONObject(i).getString("misc");
+                } catch (JSONException e1) {
+                    e1.printStackTrace();
+                }
+                pieData.add(pdata);
             }
-            pieData.add(pdata);
-        }
 
-        temp = new int[4];
-        int sum = 0;
-        for(int i = 0; i<ja.length(); i++){
-            String s = pieData.get(i).total;
-            int j = Integer.parseInt(s);
-            sum = sum + j;
-        }
-        temp[0] = sum;
-        sum = 0;
-        for(int i = 0; i<ja.length(); i++){
-            String s = pieData.get(i).food;
-            int j = Integer.parseInt(s);
-            sum = sum + j;
-        }
-        temp[1] = sum;
-        sum = 0;
-        for(int i = 0; i<ja.length(); i++){
-            String s = pieData.get(i).clothing;
-            int j = Integer.parseInt(s);
-            sum = sum + j;
-        }
-        temp[2] = sum;
-        sum = 0;
-        for(int i = 0; i<ja.length(); i++){
-            String s = pieData.get(i).misc;
-            int j = Integer.parseInt(s);
-            sum = sum + j;
-        }
-        temp[3] = sum;
+            temp = new int[4];
+            int sum = 0;
+            for (int i = 0; i < ja.length(); i++) {
+                String s = pieData.get(i).total;
+                int j = Integer.parseInt(s);
+                sum = sum + j;
+            }
+            temp[0] = sum;
+            sum = 0;
+            for (int i = 0; i < ja.length(); i++) {
+                String s = pieData.get(i).food;
+                int j = Integer.parseInt(s);
+                sum = sum + j;
+            }
+            temp[1] = sum;
+            sum = 0;
+            for (int i = 0; i < ja.length(); i++) {
+                String s = pieData.get(i).clothing;
+                int j = Integer.parseInt(s);
+                sum = sum + j;
+            }
+            temp[2] = sum;
+            sum = 0;
+            for (int i = 0; i < ja.length(); i++) {
+                String s = pieData.get(i).misc;
+                int j = Integer.parseInt(s);
+                sum = sum + j;
+            }
+            temp[3] = sum;
 
-        fl = new float[temp.length-1];
-        for(int i = 1; i< temp.length; i++){
-            int q = temp[i]/temp[0];
-            int r = temp[i]%temp[0];
-            double re = r*0.01;
-            double f = q + re;
-            fl[i-1] = (float)f;
+            fl = new float[temp.length - 1];
+            for (int i = 1; i < temp.length; i++) {
+                int q = temp[i] / temp[0];
+                int r = temp[i] % temp[0];
+                double re = r * 0.01;
+                double f = q + re;
+                fl[i - 1] = (float) f;
+            }
+
+            for (int i = 0; i < fl.length; i++) {
+                yEntrys.add(new PieEntry(fl[i], i));
+            }
+            for (int i = 0; i < xData.length; i++) {
+                xEntrys.add(xData[i]);
+            }
+
+            PieDataSet pieDataSet = new PieDataSet(yEntrys, "Spending");
+            pieDataSet.setSliceSpace(2);
+            pieDataSet.setValueTextSize(12);
+
+            ArrayList<Integer> colors = new ArrayList<>();
+            colors.add(Color.GRAY);
+            colors.add(Color.BLUE);
+            colors.add(Color.RED);
+            colors.add(Color.GREEN);
+            colors.add(Color.CYAN);
+            colors.add(Color.YELLOW);
+            colors.add(Color.MAGENTA);
+
+            pieDataSet.setColors(colors);
+
+            Legend legend = pieChart.getLegend();
+            legend.setForm(Legend.LegendForm.CIRCLE);
+            legend.setPosition(Legend.LegendPosition.LEFT_OF_CHART);
+
+            PieData pieData = new PieData(pieDataSet);
+            pieChart.setData(pieData);
+            pieChart.invalidate();
         }
-
-        for(int i = 0; i < fl.length; i++){
-            yEntrys.add(new PieEntry(fl[i], i));
-        }
-        for(int i = 0; i < xData.length; i++){
-            xEntrys.add(xData[i]);
-        }
-
-        PieDataSet pieDataSet = new PieDataSet(yEntrys, "Spending");
-        pieDataSet.setSliceSpace(2);
-        pieDataSet.setValueTextSize(12);
-
-        ArrayList<Integer> colors = new ArrayList<>();
-        colors.add(Color.GRAY);
-        colors.add(Color.BLUE);
-        colors.add(Color.RED);
-        colors.add(Color.GREEN);
-        colors.add(Color.CYAN);
-        colors.add(Color.YELLOW);
-        colors.add(Color.MAGENTA);
-
-        pieDataSet.setColors(colors);
-
-        Legend legend = pieChart.getLegend();
-        legend.setForm(Legend.LegendForm.CIRCLE);
-        legend.setPosition(Legend.LegendPosition.LEFT_OF_CHART);
-
-        PieData pieData = new PieData(pieDataSet);
-        pieChart.setData(pieData);
-        pieChart.invalidate();
     }
 }
