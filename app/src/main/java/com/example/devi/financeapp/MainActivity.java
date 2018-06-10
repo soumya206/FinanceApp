@@ -9,6 +9,7 @@ import android.widget.ImageButton;
 public class MainActivity extends AppCompatActivity {
 
     public ImageButton totalButton;
+
     public void changeToTodayTotal() {
         totalButton = findViewById(R.id.todaysTotalButton);
         totalButton.setOnClickListener(new View.OnClickListener() {
@@ -33,11 +34,26 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+    public ImageButton scButton;
+    public void changetoSpendingChart(){
+        scButton = findViewById(R.id.scButton);
+        scButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent spendingchart = new Intent(MainActivity.this, SpendingPieChart.class);
+                startActivity(spendingchart);
+            }
+        });
+    }
+
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         changeToTodayTotal();
         changeToFinancialCalender();
+        changetoSpendingChart();
     }
 }
