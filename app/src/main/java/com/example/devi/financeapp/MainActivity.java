@@ -58,6 +58,18 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+    public ImageButton grButton;
+    public void changeToLineGraph() {
+        grButton = findViewById(R.id.graphButton);
+        grButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent graph = new Intent(MainActivity.this, LineGraph.class);
+                startActivity(graph);
+            }
+        });
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -66,5 +78,6 @@ public class MainActivity extends AppCompatActivity {
         changeToFinancialCalender();
         changetoSpendingChart();
         changeToTips();
+        changeToLineGraph();
     }
 }

@@ -144,7 +144,7 @@
         android:layout_height="80dp"
         android:layout_marginEnd="200dp"
         android:layout_marginStart="200dp"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="68dp"
         android:background="@drawable/totalbutton"
         android:scaleType="fitXY"
         app:layout_constraintEnd_toEndOf="parent"

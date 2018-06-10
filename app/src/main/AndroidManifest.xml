@@ -23,7 +23,8 @@
             android:windowSoftInputMode="adjustResize|adjustPan" />
         <activity android:name=".addNewBill" />
         <activity android:name=".SpendingPieChart" />
-        <activity android:name=".Tips"></activity>
+        <activity android:name=".Tips" />
+        <activity android:name=".LineGraph"></activity>
     </application>
 
 </manifest>
