@@ -64,8 +64,8 @@ public class MainActivity extends AppCompatActivity {
         grButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent graph = new Intent(MainActivity.this, LineGraph.class);
-                startActivity(graph);
+                Intent lineGraph = new Intent(MainActivity.this, LineGraph.class);
+                startActivity(lineGraph);
             }
         });
     }
