@@ -3,6 +3,7 @@ package com.example.devi.financeapp;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.os.Environment;
 import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
@@ -19,7 +20,17 @@ import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class financialCalendar extends AppCompatActivity {
 
@@ -29,7 +40,9 @@ public class financialCalendar extends AppCompatActivity {
     private ArrayList<String> billAddress;
     private Boolean[]  notificationPrefs;
     private ArrayList<Integer> priorities;
+    private ArrayList<Double> temp;
     private int itemSelected;
+    private int listSize = 0;
 
     private EditText inputBudget;
     private TextView outputRemaining;
@@ -51,6 +64,34 @@ public class financialCalendar extends AppCompatActivity {
                 startActivityForResult(newBill, 10);
             }
         });
+    }
+
+    protected void initData() throws IOException {
+        File filePath = new File(this.getFilesDir().getAbsolutePath()+"/appData/CalData.txt");
+        try {
+            FileInputStream fis = new FileInputStream(filePath);
+            InputStreamReader isr = new InputStreamReader(fis);
+            BufferedReader br = new BufferedReader(isr);
+            String line;
+
+            line = br.readLine();
+            billNames = new ArrayList<String>(Arrays.asList(line.split(",")));
+            line = br.readLine();
+            billAmounts = new ArrayList<String>(Arrays.asList(line.split(",")));
+            line = br.readLine();
+            billDates = new ArrayList<String>(Arrays.asList(line.split(",")));
+            line = br.readLine();
+            billAddress = new ArrayList<String>(Arrays.asList(line.split(",")));
+
+            fis.close();
+            isr.close();
+
+            populateList();
+            updateRemaining();
+
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            }
     }
 
     protected void initInterface(){
@@ -122,6 +163,11 @@ public class financialCalendar extends AppCompatActivity {
 
         changeToAddBill();
         initInterface();
+        //try {
+            //initData();
+        //} catch (IOException e) {
+            //e.printStackTrace();
+        //}
     }
 
     @Override
@@ -137,6 +183,7 @@ public class financialCalendar extends AppCompatActivity {
                     billAmounts.add(data.getStringExtra("amount"));
                     billDates.add(data.getStringExtra("date"));
                     billAddress.add(data.getStringExtra("address"));
+                    listSize++;
 
                     CustomObject customObject =  new CustomObject(data.getStringExtra("name"), "$"+data.getStringExtra("amount"), data.getStringExtra("date"));
                     listObject.add(customObject);
@@ -146,6 +193,33 @@ public class financialCalendar extends AppCompatActivity {
 
 
             }
+        }
+    }
+
+    @Override
+    public void onBackPressed(){
+        File file = new File(this.getFilesDir(), "appData");
+        if(!file.exists()){
+            file.mkdir();
+        }
+
+        try{
+            String fileName = "CalData.txt";
+            File data = new File(file, fileName);
+            FileWriter writer = new FileWriter(data);
+            writer.write(billNames.toString());
+            writer.append("\n");
+            writer.append(billAmounts.toString());
+            writer.append("\n");
+            writer.append(billDates.toString());
+            writer.append("\n");
+            writer.append(billAddress.toString());
+            writer.flush();
+            writer.close();
+            finish();
+
+        }catch (Exception e){
+            e.printStackTrace();
         }
     }
 }

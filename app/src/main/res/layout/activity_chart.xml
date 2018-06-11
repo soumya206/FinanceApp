@@ -7,17 +7,54 @@
     tools:context=".SpendingPieChart">
 
 
+    <ImageView
+        android:id="@+id/imageViewTop3"
+        android:layout_width="387dp"
+        android:layout_height="67dp"
+        android:layout_marginBottom="312dp"
+        android:background="@drawable/rectangletop"
+        app:layout_constraintBottom_toTopOf="@+id/floatingActionButton"
+        app:layout_constraintEnd_toEndOf="@+id/imageViewBottom"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/rectangletop" />
+
+    <ImageView
+        android:id="@+id/imageViewBottom2"
+        android:layout_width="419dp"
+        android:layout_height="25dp"
+        android:background="@drawable/bottomrect"
+        android:contentDescription="TODO"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView13"
+        app:srcCompat="@drawable/bottomrect" />
+
     <com.github.mikephil.charting.charts.PieChart
         android:id="@+id/PieChart"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_width="339dp"
+        android:layout_height="463dp"
         android:layout_marginBottom="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.517"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"></com.github.mikephil.charting.charts.PieChart>
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.721"></com.github.mikephil.charting.charts.PieChart>
+
+    <TextView
+        android:id="@+id/textView9"
+        android:layout_width="361dp"
+        android:layout_height="52dp"
+        android:gravity="center"
+        android:text="Your Spending Analysis"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:textColor="#FFFFFF"
+        android:textStyle="bold"
+        tools:layout_editor_absoluteX="13dp"
+        tools:layout_editor_absoluteY="8dp" />
 
 </android.support.constraint.ConstraintLayout>

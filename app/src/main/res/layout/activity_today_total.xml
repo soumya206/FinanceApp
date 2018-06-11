@@ -173,7 +173,7 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="30dp"
         android:layout_marginStart="30dp"
-        android:layout_marginTop="384dp"
+        android:layout_marginTop="372dp"
         android:text="How much was spent on miscellaneous activities?"
         android:textSize="18sp"
         android:textStyle="bold"
@@ -190,7 +190,7 @@
         android:layout_marginStart="250dp"
         android:layout_marginTop="432dp"
         android:ems="10"
-        android:inputType="number"
+        android:inputType="text"
         android:text="0"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
@@ -199,16 +199,17 @@
 
     <TextView
         android:id="@+id/textView11"
-        android:layout_width="50dp"
+        android:layout_width="47dp"
         android:layout_height="100dp"
-        android:layout_marginEnd="50dp"
+        android:layout_marginEnd="126dp"
         android:layout_marginStart="170dp"
         android:layout_marginTop="440dp"
         android:text="$"
         android:textSize="24sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.333"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toEndOf="@+id/editText"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -221,6 +222,25 @@
         android:background="@drawable/layertwo"
         android:text="Enter"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editText" />
+
+    <EditText
+        android:id="@+id/editText"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="35dp"
+        android:layout_marginEnd="17dp"
+
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="441dp"
+        android:ems="10"
+        android:gravity="center"
+        android:inputType="textPersonName"
+        android:text="Category"
+        app:layout_constraintBottom_toTopOf="@+id/button"
+        app:layout_constraintEnd_toStartOf="@+id/textView11"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </android.support.constraint.ConstraintLayout>

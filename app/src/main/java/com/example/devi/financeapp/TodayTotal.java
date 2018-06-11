@@ -23,6 +23,7 @@ public class TodayTotal extends AppCompatActivity {
     EditText foodAnswer;
     EditText clothing;
     EditText miscellaneous;
+    EditText category;
     JSONObject jo;
     JSONArray ja;
     JSONObject temp = new JSONObject();
@@ -36,6 +37,7 @@ public class TodayTotal extends AppCompatActivity {
         clothing = findViewById(R.id.editText2);
         miscellaneous = findViewById(R.id.editText4);
         button = findViewById(R.id.button);
+        category = findViewById(R.id.editText);
 
         button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -77,6 +79,7 @@ public class TodayTotal extends AppCompatActivity {
                     temp.put("food", foodAnswer.getText().toString());
                     temp.put("clothing", clothing.getText().toString());
                     temp.put("misc",miscellaneous.getText().toString());
+                    temp.put("category",category.getText().toString());
 
                 }catch(JSONException e){
 
@@ -95,8 +98,9 @@ public class TodayTotal extends AppCompatActivity {
                 catch(IOException e){
 
                 }
-                Intent i = new Intent(TodayTotal.this, MainActivity.class);
-                startActivity(i);
+                //Intent i = new Intent(TodayTotal.this, MainActivity.class);
+                //startActivity(i);
+                finish();
 
             }
         });
