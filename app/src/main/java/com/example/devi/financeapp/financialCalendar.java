@@ -112,6 +112,7 @@ public class financialCalendar extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 listObject.remove(itemSelected);
+                billAmounts.remove(itemSelected);
                 populateList();
                 updateRemaining();
                 Toast.makeText(financialCalendar.this, "Bill Deleted", Toast.LENGTH_LONG).show();
