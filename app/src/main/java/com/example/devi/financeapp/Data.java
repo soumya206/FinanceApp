@@ -5,4 +5,5 @@ public class Data {
     public String food;
     public String clothing;
     public String misc;
+    public String category;
 }

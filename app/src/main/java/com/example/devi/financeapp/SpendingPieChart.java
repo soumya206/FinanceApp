@@ -42,7 +42,7 @@ public class SpendingPieChart extends AppCompatActivity {
     float[] fl;
     ArrayList<Data> pieData = new ArrayList<Data>();
     private float[] yData = {25.3f, 66.76f, 44.32f, 46.01f};
-    private String[] xData ={"food", "clothing", "miscellaneous"};
+    private ArrayList<String> xData = new ArrayList<String>();
     PieChart pieChart;
 
     @Override
@@ -59,6 +59,8 @@ public class SpendingPieChart extends AppCompatActivity {
         pieChart.setRotationEnabled(true);
         pieChart.setHoleRadius(0f);
         pieChart.setTransparentCircleAlpha(0);
+        xData.add("food");
+        xData.add("clothing");
         addDataSet();
         pieChart.setOnChartValueSelectedListener(new OnChartValueSelectedListener() {
             @Override
@@ -75,7 +77,7 @@ public class SpendingPieChart extends AppCompatActivity {
                         break;
                     }
                 }
-                String expense = xData[pos1];
+                String expense = xData.get(pos1);
                 Toast.makeText(SpendingPieChart.this, "Expense: " + expense + "\n" + "Cost: $" + temp[pos1 + 1], Toast.LENGTH_SHORT).show();
             }
 
@@ -123,6 +125,7 @@ public class SpendingPieChart extends AppCompatActivity {
                     pdata.food = ja.getJSONObject(i).getString("food");
                     pdata.clothing = ja.getJSONObject(i).getString("clothing");
                     pdata.misc = ja.getJSONObject(i).getString("misc");
+                    xData.add(ja.getJSONObject(i).getString("category"));
                 } catch (JSONException e1) {
                     e1.printStackTrace();
                 }
@@ -171,8 +174,8 @@ public class SpendingPieChart extends AppCompatActivity {
             for (int i = 0; i < fl.length; i++) {
                 yEntrys.add(new PieEntry(fl[i], i));
             }
-            for (int i = 0; i < xData.length; i++) {
-                xEntrys.add(xData[i]);
+            for (int i = 0; i < xData.size(); i++) {
+                xEntrys.add(xData.get(i));
             }
 
             PieDataSet pieDataSet = new PieDataSet(yEntrys, "Spending");
