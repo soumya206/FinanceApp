@@ -31,6 +31,7 @@ import java.io.InputStreamReader;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 
 public class financialCalendar extends AppCompatActivity {
 
@@ -67,7 +68,7 @@ public class financialCalendar extends AppCompatActivity {
     }
 
     protected void initData() throws IOException {
-        File filePath = new File(this.getFilesDir().getAbsolutePath()+"/appData/CalData.txt");
+        File filePath = new File(this.getFilesDir().getAbsolutePath()+"/appData/listData.txt");
         try {
             FileInputStream fis = new FileInputStream(filePath);
             InputStreamReader isr = new InputStreamReader(fis);
@@ -75,17 +76,21 @@ public class financialCalendar extends AppCompatActivity {
             String line;
 
             line = br.readLine();
-            billNames = new ArrayList<String>(Arrays.asList(line.split(",")));
+            Collections.addAll(billNames, line.replace("[", "").replace("]","").split(","));
             line = br.readLine();
-            billAmounts = new ArrayList<String>(Arrays.asList(line.split(",")));
+            Collections.addAll(billAmounts, line.replace("[", "").replace("]","").split(","));
             line = br.readLine();
-            billDates = new ArrayList<String>(Arrays.asList(line.split(",")));
+            Collections.addAll(billDates, line.replace("[", "").replace("]","").split(","));
             line = br.readLine();
-            billAddress = new ArrayList<String>(Arrays.asList(line.split(",")));
+            Collections.addAll(billAddress, line.replace("[", "").replace("]","").split(","));
 
             fis.close();
             isr.close();
 
+            for(int i = 0; i<billAmounts.size(); i++){
+                CustomObject customObject =  new CustomObject(billNames.get(i), "$"+billAmounts.get(i), billDates.get(i));
+                listObject.add(customObject);
+            }
             populateList();
             updateRemaining();
 
@@ -164,11 +169,11 @@ public class financialCalendar extends AppCompatActivity {
 
         changeToAddBill();
         initInterface();
-        //try {
-            //initData();
-        //} catch (IOException e) {
-            //e.printStackTrace();
-        //}
+        try {
+            initData();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
@@ -205,16 +210,16 @@ public class financialCalendar extends AppCompatActivity {
         }
 
         try{
-            String fileName = "CalData.txt";
+            String fileName = "listData.txt";
             File data = new File(file, fileName);
             FileWriter writer = new FileWriter(data);
             writer.write(billNames.toString());
             writer.append("\n");
-            writer.append(billAmounts.toString());
+            writer.write(billAmounts.toString());
             writer.append("\n");
-            writer.append(billDates.toString());
+            writer.write(billDates.toString());
             writer.append("\n");
-            writer.append(billAddress.toString());
+            writer.write(billAddress.toString());
             writer.flush();
             writer.close();
             finish();
